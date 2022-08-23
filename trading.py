@@ -69,7 +69,7 @@ class Trade:
         if unused_take_profit is None:
             return 0.0
 
-        return self.__take_profit_price(unused_take_profit['Percent'])
+        return self.__take_profit_price(unused_take_profit['percent'])
 
     def new_position(self, entry_price, side, position_size):
         self.__entry_price = entry_price
@@ -93,6 +93,9 @@ class Trade:
         return self.in_position and self.side == 'short'
 
     def should_close_by_tp(self, price):
+        if self.__actual_take_profit_price() == 0.0:
+            return False
+
         if self.side == 'long':
             return self.use_tp and price >= self.__actual_take_profit_price()
 

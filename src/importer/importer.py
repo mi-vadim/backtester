@@ -11,7 +11,6 @@ class Importer:
     def _retrieve_data(self, ticker, start_time, end_time) -> []:
         data = []
         dti = pandas.date_range(start=start_time, end=end_time, freq="M")
-        print(dti)
         for day in dti:
             from_date = day.replace(day=1).timestamp()
             to_date = day.replace(hour=23, minute=59, second=59).timestamp()

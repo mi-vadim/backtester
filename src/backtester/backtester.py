@@ -26,11 +26,11 @@ class Backtester:
         trades = []
 
         is_uptrend = data_frame['Supertrend']
-        close = data_frame['Close']
-        open_prices = data_frame['Open']
-        high = data_frame['High']
-        low = data_frame['Low']
-        time = data_frame['StartTime']
+        close = data_frame['close']
+        open_prices = data_frame['open']
+        high = data_frame['high']
+        low = data_frame['low']
+        time = data_frame['startTime']
 
         for i in range(0, len(data_frame)):
             close_price = round(close[i], 6)

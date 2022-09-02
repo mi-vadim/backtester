@@ -27,9 +27,9 @@ class SuperTrend:
 
     def set_dataframe(self, df):
         self.__df = df
-        self.__high = df['High']
-        self.__low = df['Low']
-        self.__close = df['Close']
+        self.__high = df['high']
+        self.__low = df['low']
+        self.__close = df['close']
         return self
 
     def calculate(self):

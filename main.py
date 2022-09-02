@@ -1,9 +1,14 @@
-import pandas
-
 from src.backtester.backtester import Backtester
+from src.importer.importer import Importer
 
-data_frame = pandas.read_csv('data/inputs/CRV-PERP.csv', index_col=None)
-backtester = Backtester(data_frame=data_frame)
+importer = Importer()
+ticker = input('Enter ticker from FTX (Example: BTC-PERP): ')
+if ticker == '':
+    raise NameError('NotEnteredTicker')
+
+backtester = Backtester(
+    data_frame=importer.get_data_frame(ticker=ticker, from_date='2021-01-01')
+)
 
 try:
     period = int(input("Enter period: "))

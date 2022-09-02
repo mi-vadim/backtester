@@ -13,8 +13,34 @@ Install my project with pip
     
 ## Demo
 
+#### With specific params
+
 ```
 /usr/local/bin/python3.10 main.py 
+
+Enter ticker from FTX (Example: BTC-PERP): CRO-PERP
+
+Enter period: 10
+
+Enter multiplier: 3
+
+ ============
+
+SuperTrend Params (ATR Period = 10, Factor = 3.0)
+Earning from $1000 is $3419.84 (ROI = 341.98%, Balance = $4419.84)
+
+```
+
+#### Without params
+
+```
+Enter ticker from FTX (Example: BTC-PERP): CRO-PERP
+
+Enter period: 10
+
+Enter multiplier: 3
+
+ ============
 
 SuperTrend Params (ATR Period = 14, Factor = 11.9)
 
@@ -30,15 +56,11 @@ Earning from $1000 is $2124.89 (ROI = 212.49%, Balance = $3124.89)
 1298          12         9.8  606.14
 1407          13         9.7  596.10
 1080          10        10.0  587.56
-
 ```
-
 
 ## Roadmap
 
 - Add MAKEFILE
-
-- Add support for download market data
 
 - more ...
 

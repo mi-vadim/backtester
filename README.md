@@ -36,11 +36,25 @@ Earning from $1000 is $3419.84 (ROI = 341.98%, Balance = $4419.84)
 ```
 Enter ticker from FTX (Example: BTC-PERP): CRO-PERP
 
-Enter period: 10
+Enter period: 0
 
-Enter multiplier: 3
+Enter multiplier: 0
 
  ============
+ 
+SuperTrend Params (ATR Period = 1, Factor = 7.8)
+Earning from $1000 is $718.16 (ROI = 71.82%, Balance = $1718.16)
+
+ ============
+SuperTrend Params (ATR Period = 1, Factor = 7.9)
+Earning from $1000 is $474.99 (ROI = 47.5%, Balance = $1474.99)
+
+.....
+
+ ============
+SuperTrend Params (ATR Period = 1, Factor = 7.9)
+Earning from $1000 is $474.99 (ROI = 47.5%, Balance = $1474.99)
+
 
 SuperTrend Params (ATR Period = 14, Factor = 11.9)
 

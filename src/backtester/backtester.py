@@ -1,7 +1,7 @@
 import pandas
 
-from indicators.supertrend import SuperTrend
-from trading import Trade
+from src.backtester.indicators.supertrend import SuperTrend
+from src.trader.trading import Trade
 
 
 class Backtester:
@@ -80,7 +80,7 @@ class Backtester:
             data=trades,
             columns=['side', 'entry_time', 'entry_price', 'exit_time', 'exit_price', 'mfe', 'mae']
         )
-        exit_df.to_csv('blabla.csv', sep='\t')
+        exit_df.to_csv("data/outputs/trading_results.csv", sep='\t')
 
     def top_results(self, count=10):
         return pandas \

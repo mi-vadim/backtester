@@ -1,8 +1,8 @@
 import pandas
 
-from backtester import Backtester
+from src.backtester.backtester import Backtester
 
-data_frame = pandas.read_csv('data/CRV-PERP.csv', index_col=None)
+data_frame = pandas.read_csv('data/inputs/CRV-PERP.csv', index_col=None)
 backtester = Backtester(data_frame=data_frame)
 
 try:

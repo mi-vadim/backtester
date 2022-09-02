@@ -1,3 +1,6 @@
+import math
+
+
 class Trade:
     __take_profits = [
         {
@@ -29,11 +32,15 @@ class Trade:
     __commission = 0.019
     __entry_price = 0.0
     __position_size = 0.0
+    __position_data = []
 
     use_tp = False
     in_position = False
     balance = 0.0
     side = 'long'
+
+    def __init__(self):
+        self.__export_data = None
 
     def reset(self, balance, use_tp=False):
         self.balance = balance
@@ -71,20 +78,57 @@ class Trade:
 
         return self.__take_profit_price(unused_take_profit['percent'])
 
-    def new_position(self, entry_price, side, position_size):
+    def add_trading_data(self, open_price, high, close, low):
+        self.__position_data.append([
+            open_price, high, close, low
+        ])
+
+    def new_position(self, time, entry_price, side):
+        self.__highest_percent = 0.0
         self.__entry_price = entry_price
-        self.__position_size = position_size
+        self.__position_size = math.floor(self.balance / entry_price)
         self.side = side
         self.in_position = True
-        self.balance -= self.__get_commission(position_size, entry_price)
+        self.balance -= self.__get_commission(self.__position_size, entry_price)
+        self.__position_data = []
+        self.__export_data = {
+            "side": side,
+            "entry_time": time,
+            "entry_price": entry_price,
+        }
 
-    def close_position(self, price):
+    def __mfe_calculation(self):
+        max_high_price = max(list(map(lambda x: x[1], self.__position_data)))
+        min_low_price = min(list(map(lambda x: x[3], self.__position_data)))
+        if self.side == 'long':
+            return (self.__entry_price - max_high_price) / self.__entry_price * 100
+
+        return (self.__entry_price - min_low_price) / self.__entry_price * 100
+
+    def __mae_calculation(self):
+        max_high_price = max(list(map(lambda x: x[1], self.__position_data)))
+        min_low_price = min(list(map(lambda x: x[3], self.__position_data)))
+        if self.side == 'long':
+            return (self.__entry_price - min_low_price) / self.__entry_price * 100
+
+        return (self.__entry_price - max_high_price) / self.__entry_price * 100
+
+    def close_position(self, time, price) -> {}:
+        self.__export_data["exit_time"] = time
+        self.__export_data["exit_price"] = price
+        self.__export_data["mfe"] = round(math.fabs(self.__mfe_calculation()), 2)
+        self.__export_data["mae"] = round(math.fabs(self.__mae_calculation()), 2)
+
         self.balance += self.__change_balance_calculation(price=price, size=self.__position_size)
         self.balance -= self.__get_commission(size=self.__position_size, price=price)
         self.in_position = False
         self.__reset_take_profits()
         self.__entry_price = 0.0
         self.__position_size = 0.0
+        return self.__export_data
+
+    def get_highest_percent(self):
+        return round(self.__highest_percent, 2)
 
     def in_long_position(self):
         return self.in_position and self.side == 'long'

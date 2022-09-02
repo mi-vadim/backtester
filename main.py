@@ -7,7 +7,7 @@ if ticker == '':
     raise NameError('NotEnteredTicker')
 
 backtester = Backtester(
-    data_frame=importer.get_data_frame(ticker=ticker, from_date='2022-07-25')
+    data_frame=importer.get_data_frame(ticker=ticker, from_date='2022-05-01')
 )
 
 try:

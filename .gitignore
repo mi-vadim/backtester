@@ -6,3 +6,5 @@ venv/
 
 data/inputs/*.csv
 data/outputs/*.csv
+*.pyc
+.DS_Store

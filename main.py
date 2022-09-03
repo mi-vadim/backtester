@@ -3,11 +3,17 @@ from src.importer.importer import Importer
 
 importer = Importer()
 ticker = input('Enter ticker from FTX (Example: BTC-PERP): ')
+start_date = input('Enter start date of backtest (Example: 2022-01-01): ')
+resolution_in_seconds = input('Enter resolution for chart data in seconds (Example 3600 (1H)): ')
+
 if ticker == '':
     raise NameError('NotEnteredTicker')
 
+if start_date == '':
+    start_date = '2021-01-01'
+
 backtester = Backtester(
-    data_frame=importer.get_data_frame(ticker=ticker, from_date='2022-05-01')
+    data_frame=importer.get_data_frame(ticker=ticker, from_date=start_date, resolution=resolution_in_seconds)
 )
 
 try:

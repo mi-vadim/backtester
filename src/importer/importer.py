@@ -16,7 +16,7 @@ class Importer:
             to_date = day.replace(hour=23, minute=59, second=59).timestamp()
             response = self._client.get_historical_prices(
                 market=ticker,
-                resolution=300,
+                resolution=900,
                 start_time=from_date,
                 end_time=to_date
             )

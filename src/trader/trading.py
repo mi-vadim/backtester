@@ -6,27 +6,27 @@ class Trade:
         {
             "status": False,
             "percent": 2,
-            "amount": 25
+            "amount": 20
         },
         {
             "status": False,
             "percent": 5,
-            "amount": 25
+            "amount": 20
         },
         {
             "status": False,
             "percent": 7,
-            "amount": 25
+            "amount": 20
         },
         {
             "status": False,
             "percent": 10,
-            "amount": 13
+            "amount": 20
         },
         {
             "status": False,
             "percent": 12,
-            "amount": 12
+            "amount": 20
         },
     ]
     __commission = 0.019

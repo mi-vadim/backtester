@@ -82,7 +82,7 @@ class Backtester:
         )
         exit_df.to_csv("data/outputs/trading_results.csv", sep='\t')
 
-    def top_results(self, count=10):
+    def top_results(self, count=3):
         return pandas \
             .DataFrame(self.__roi_list, columns=['ATR_period', 'Multiplier', 'ROI']) \
             .sort_values(by=['ROI'], ascending=False).head(count)
